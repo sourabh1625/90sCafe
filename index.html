@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ether AI - Pendra Road</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container": "#2d0b45",
+            "inverse-primary": "#f472b6",
+            "surface-tint": "#d946ef",
+            "on-error-container": "#ffdad6",
+            "on-secondary-container": "#fdf4ff",
+            "surface-container-highest": "#4c1d95",
+            "inverse-on-surface": "#1e072a",
+            "on-surface-variant": "#d8b4fe",
+            "on-error": "#ffffff",
+            "primary": "#d946ef",
+            "tertiary-fixed": "#fce7f3",
+            "tertiary-fixed-dim": "#fbcfe8",
+            "on-tertiary-fixed": "#4a044e",
+            "error": "#fb7185",
+            "on-secondary-fixed": "#2e1065",
+            "primary-fixed-dim": "#f5d0fe",
+            "surface-container-high": "#3b0764",
+            "secondary": "#a855f7",
+            "outline": "#701a75",
+            "surface-variant": "#4c1d95",
+            "on-surface": "#fdf4ff",
+            "surface": "#1e072a",
+            "on-secondary": "#ffffff",
+            "error-container": "#881337",
+            "surface-container-low": "#1a0624",
+            "tertiary": "#f472b6",
+            "secondary-fixed-dim": "#e9d5ff",
+            "on-tertiary-container": "#500724",
+            "surface-dim": "#1a0624",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#fdf4ff",
+            "primary-fixed": "#f3e8ff",
+            "surface-container-lowest": "#12031a",
+            "background": "#1e072a",
+            "tertiary-container": "#831843",
+            "on-tertiary-fixed-variant": "#701a75",
+            "primary-container": "#701a75",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed": "#4a044e",
+            "on-primary-fixed-variant": "#701a75",
+            "secondary-fixed": "#f3e8ff",
+            "on-background": "#fdf4ff",
+            "outline-variant": "#4a044e",
+            "on-primary-container": "#f5d0fe",
+            "surface-bright": "#3b0764",
+            "secondary-container": "#581c87",
+            "on-secondary-fixed-variant": "#6b21a8"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "sm": "12px",
+            "margin-desktop": "64px",
+            "gutter": "24px",
+            "xs": "4px",
+            "xl": "80px",
+            "margin-mobile": "16px",
+            "base": "8px",
+            "md": "24px",
+            "lg": "48px"
+          },
+          "fontFamily": {
+            "label-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-md": ["12px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+            "label-sm": ["10px", {"lineHeight": "16px", "fontWeight": "500"}],
+            "headline-md": ["20px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "body-md": ["14px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "36px", "fontWeight": "700"}],
+            "headline-lg": ["28px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-lg": ["16px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "headline-xl": ["36px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body { 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      background-color: #1e072a; 
+      color: #fdf4ff; 
+      overflow-x: hidden;
+    }
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    
+    .neo-glass { 
+      background: rgba(45, 11, 69, 0.4); 
+      backdrop-filter: blur(20px) saturate(180%); 
+      border: 1px solid rgba(217, 70, 239, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    
+    .glow-border {
+      position: relative;
+    }
+    .glow-border::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(217, 70, 239, 1), rgba(244, 114, 182, 0.5), rgba(168, 85, 247, 1));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .ethereal-bg {
+      background: radial-gradient(circle at 20% 30%, #4c1d95 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, #831843 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, #1e072a 0%, #12031a 100%);
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+    }
+
+    .asymmetric-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .animated-brand-text {
+      background: linear-gradient(90deg, #d946ef, #a855f7, #f472b6, #d946ef);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 6s ease infinite;
+    }
+
+    body { min-height: 100dvh; }
+  
+    .modal-overlay {
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active { 
+      opacity: 1; 
+      pointer-events: auto; 
+    }
+    .modal-overlay.active .modal-content { 
+      transform: scale(1); 
+      opacity: 1;
+    }
+    .modal-content { 
+      transform: scale(0.5); 
+      opacity: 0;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease; 
+    }
+  </style>
+</head>
+<body class="text-on-background">
+<div class="ethereal-bg"></div>
+<!-- Pendra Road Header -->
+
+
+ <!--Header-->
+<header class="sticky top-0 w-full z-50 h-[80px] bg-surface flex items-center justify-between px-margin-mobile md:px-margin-desktop shadow-lg border-b border-white/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-headline-md text-[18px] animated-brand-text font-bold">90's Cafe</span>
+</div>
+<div class="flex items-center">
+<button class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20 hover:border-primary/60 transition-colors" id="profile-trigger" onclick="openModal()">
+<img alt="User profile" class="w-full h-full object-cover" src="logo1.jpeg"/>
+</button>
+</div>
+</header>
+
+
+
+<!--Main-->
+<main class="pb-28 px-margin-mobile min-h-screen">
+<!-- Integrated Greeting & Clock -->
+<section class="mb-4 relative py-md flex flex-col items-center text-center" style="height: 110px;">
+
+<div class="absolute inset-0 bg-primary/5 blur-3xl rounded-full"></div>
+<div class="relative z-10 flex flex-col items-center">
+<h1 class="font-headline-lg-mobile text-[20px] text-on-surface mb-xs drop-shadow-lg" id="greeting-text">Good Morning ☀️🌅</h1>
+<div class="flex flex-col items-center mt-base">
+<div class="font-headline-xl text-[20px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-tertiary to-secondary tabular-nums tracking-tighter" id="live-clock">
+        00:00:00
+      </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.3em] opacity-250 mt-1">Welcome To 90's Cafe</span>
+</div>
+</div>
+</section>
+
+
+<!-- Fluid Asymmetrical Layout -->
+<div class="grid grid-cols-1 gap-gutter">
+<!-- Main Hero Card -->
+<section class="w-full">
+<div class="relative overflow-hidden rounded-xl neo-glass glow-border aspect-[16/6] flex flex-col justify-end p-md group transition-all duration-500 hover:shadow-[0_0_30px_rgba(217,70,239,0.3)]">
+<div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 opacity-40 mix-blend-overlay" style="background-image: url('Cafe_dish_spread_with_sandwich_202606191558.jpeg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container via-transparent to-transparent z-10"></div>
+<div class="relative z-20">
+<h2 class="font-headline-lg-mobile text-[20px] text-on-primary-container mb-xs leading-tight">Explore Our <span class="text-tertiary italic">Delicious........</span></h2>
+<p class="font-body-md text-body-md text-on-surface-variant/90 mb-md max-w-[80%]"></p>
+</div>
+</div>
+</section>
+</div>
+</main>
+
+
+
+
+
+
+<div class="modal-overlay fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none flex items-center justify-center p-4 transition-all duration-300" id="profile-modal">
+<div class="modal-content relative w-full max-w-sm aspect-square bg-surface rounded-xl shadow-2xl overflow-hidden transform scale-90 transition-transform duration-400">
+<button class="absolute top-4 right-4 w-10 h-10 bg-black/20 hover:bg-white/40 backdrop-blur-md rounded-full flex items-center justify-center text-white z-10 transition-colors" onclick="closeModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<img alt="Expanded profile" class="w-full h-full object-cover" src="logo1.jpeg"/>
+</div>
+</div>
+
+
+
+
+<!-- Footer -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center py-4 px-4 bg-surface/30 backdrop-blur-3xl border-t border-primary/20 shadow-2xl">
+<!-- Home Active -->
+<div class="flex items-center gap-xs bg-primary/20 text-primary rounded-full px-4 py-2 active:scale-90 transition-all duration-300 cursor-pointer border border-primary/30">
+    
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">analytics</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+</div>
+</nav>
+<script>
+
+
+
+
+
+
+    function openModal() {
+      document.getElementById('profile-modal').classList.add('active');
+    }
+    
+    function closeModal() {
+      document.getElementById('profile-modal').classList.remove('active');
+    }
+
+    function updateGreetingAndClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      // Update Clock
+      const clockElement = document.getElementById('live-clock');
+      if (clockElement) clockElement.textContent = `${String(hours).padStart(2, '0')}:${minutes}:${seconds}`;
+
+      // Update Greeting
+      const greetingElement = document.getElementById('greeting-text');
+      if (greetingElement) {
+        let message = '';
+        if (hours < 12) {
+          message = 'Good Morning ☀️🌅';
+        } else if (hours < 18) {
+          message = 'Good Afternoon 🌤️😊';
+        } else {
+          message = 'Good Evening 🌙✨';
+        }
+        if (greetingElement.textContent !== message) {
+          greetingElement.textContent = message;
+        }
+      }
+    }
+
+    // Initialize and set interval
+    setInterval(updateGreetingAndClock, 1000);
+    updateGreetingAndClock();
+
+    // Subtle micro-interaction for cards
+    document.querySelectorAll('.neo-glass').forEach(card => {
+      card.addEventListener('touchstart', () => {
+        card.style.transform = 'scale(0.98)';
+        card.style.backgroundColor = 'rgba(217, 70, 239, 0.1)';
+      });
+      card.addEventListener('touchend', () => {
+        card.style.transform = 'scale(1)';
+        card.style.backgroundColor = '';
+      });
+    });
+  </script>
+</body></html>
