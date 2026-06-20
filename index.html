@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crave - Gourmet Delivery</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary-fixed-dim": "#ffb59d",
+                "surface-bright": "#1e1e1e",
+                "surface-variant": "#2a2a2a",
+                "on-secondary": "#ffffff",
+                "surface-dim": "#1a1a1a",
+                "secondary-fixed": "#333333",
+                "secondary-container": "#2a2a2a",
+                "on-secondary-container": "#b3b3b3",
+                "surface-tint": "#ff5100",
+                "error": "#ff4d4d",
+                "primary-container": "#ff5100",
+                "outline-variant": "#333333",
+                "inverse-primary": "#ffb59d",
+                "surface": "#121212",
+                "on-primary-fixed-variant": "#ff5100",
+                "secondary": "#b3b3b3",
+                "surface-container": "#1e1e1e",
+                "on-primary-fixed": "#ffffff",
+                "inverse-surface": "#ffffff",
+                "on-tertiary-fixed": "#ffffff",
+                "on-error-container": "#ffdad6",
+                "tertiary": "#b3b3b3",
+                "surface-container-low": "#1a1a1a",
+                "surface-container-high": "#242424",
+                "on-secondary-fixed-variant": "#b3b3b3",
+                "on-background": "#ffffff",
+                "surface-container-lowest": "#121212",
+                "tertiary-container": "#333333",
+                "on-primary-container": "#ffffff",
+                "on-tertiary-fixed-variant": "#b3b3b3",
+                "on-tertiary-container": "#ffffff",
+                "outline": "#444444",
+                "on-secondary-fixed": "#ffffff",
+                "tertiary-fixed-dim": "#b3b3b3",
+                "tertiary-fixed": "#ffffff",
+                "secondary-fixed-dim": "#b3b3b3",
+                "on-surface-variant": "#b3b3b3",
+                "primary": "#ff5100",
+                "on-error": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "primary-fixed": "#ffdbd0",
+                "error-container": "#93000a",
+                "background": "#121212",
+                "surface-container-highest": "#333333",
+                "on-primary": "#ffffff",
+                "on-surface": "#ffffff",
+                "inverse-on-surface": "#121212"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "margin-mobile": "20px",
+                    "xl": "32px",
+                    "gutter": "16px",
+                    "sm": "12px",
+                    "lg": "24px",
+                    "md": "16px",
+                    "margin-desktop": "40px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Plus Jakarta Sans"],
+                    "label-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .squircle {
+            border-radius: 1.5rem;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        .active-glow {
+            box-shadow: 0 4px 16px rgba(255, 81, 0, 0.4);
+        }
+        body {
+            min-height: max(884px, 100dvh);
+            background-color: #121212;
+        }
+        .neo-glass { 
+            background: rgba(30, 30, 30, 0.6); 
+            backdrop-filter: blur(20px) saturate(180%); 
+            border: 1px solid rgba(255, 81, 0, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+        .glow-border {
+            position: relative;
+        }
+        .glow-border::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255, 81, 0, 0.4), rgba(255, 81, 0, 0.1), rgba(179, 179, 179, 0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-brand-text {
+            background: linear-gradient(90deg, #ff5100, #ff8040, #ffffff, #ff5100);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s ease infinite;
+        }
+        .ethereal-bg {
+            background: radial-gradient(circle at 20% 30%, #1a1a1a 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, #1e1e1e 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, #121212 0%, #0a0a0a 100%);
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-lg overflow-x-hidden pb-64">
+<div class="ethereal-bg"></div>
+<!-- TopAppBar -->
+<header class=" w-full z-50 h-[80px] bg-surface/90 backdrop-blur-md flex items-center justify-between px-margin-mobile border-b border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-headline-md text-[18px] animated-brand-text font-bold">90's Cafe</span>
+</div>
+<div class="flex items-center">
+<button class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/40 hover:border-primary transition-colors" onclick="openProfileZoom()">
+<img alt="User profile" class="w-full h-full object-cover" src="logo1.jpeg"/>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile">
+<!-- Greeting & Clock -->
+<section class="mb-4 relative py-md flex flex-col items-center text-center" style="height: 110px;">
+<div class="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
+<div class="relative z-10 flex flex-col items-center">
+<h1 class="font-headline-lg-mobile text-[20px] text-on-surface mb-xs drop-shadow-sm" id="greeting-text">Good Morning ☀️🌅</h1>
+<div class="flex flex-col items-center mt-base">
+<div class="font-headline-xl text-[20px] font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-on-surface tabular-nums tracking-tighter" id="live-clock">
+                        00:00:00
+                    </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.3em] opacity-80 mt-1">Welcome To 90's Cafe</span>
+</div>
+</div>
+</section>
+<!-- Hero Banner -->
+<section class="w-full mb-lg">
+<div class="relative overflow-hidden rounded-xl neo-glass glow-border aspect-[16/7] flex flex-col justify-end p-md group transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,81,0,0.2)]">
+<div class="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 opacity-60 mix-blend-screen" style="background-image: url('Cafe_dish_spread_with_sandwich_202606191558.jpeg')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent z-10"></div>
+<div class="relative z-20">
+<h2 class="font-headline-lg-mobile text-[20px] text-on-surface mb-xs leading-tight">Explore Our <span class="text-primary italic">Delicious</span></h2>
+<p class="font-body-md text-body-sm text-on-surface-variant/90">Premium ingredients, delivered fresh.</p>
+</div>
+</div>
+</section>
+
+
+
+<!-- CATEGORY LIST -->
+<section class="py-md overflow-hidden" id="category-section" style="padding: 15px;">
+<div class="flex space-x-gutter overflow-x-auto pb-4 -mx-margin-mobile px-margin-mobile scroll-smooth" id="category-list">
+
+
+
+<!-- Category: Burger -->
+<div class="flex flex-col items-center flex-shrink-0 cursor-pointer group transition-all active:scale-95" data-category="Burger">
+<div class="category-icon w-20 h-20 bg-primary/20 squircle active-glow flex items-center justify-center p-3 mb-2 transition-transform group-hover:scale-105 border border-primary/30">
+<img alt="Burger" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsofgfBb2JP_0pKwhlILh5uqqwzS-LOvBeNIrIRjzBt520eEWQeMVO_Ao9ZWXEU_-j1oQKV_OfBesfab_pYxesDE1DnYe5uEUPywHgymvUWttYT3h1E6UssAhAj9hGzgkzMaXOR5-Ht_cJ-DKc1s_AqoDGQ4GSiWG7c3FHHt_UcVqXtzPnSg2gLUF0oW_pGkxnAblfecBtoaSerH0CNhvXnht1QNPjUrZj9CaZCfp8MOzuvruHe9OL_8XccAjL2h9_U1g1t5O5LpQ"/>
+</div>
+<span class="category-label font-label-md text-label-md text-primary">Burger</span>
+</div>
+
+
+
+<!-- Category: Pizza -->
+<div class="flex flex-col items-center flex-shrink-0 cursor-pointer group transition-all active:scale-95" data-category="Pizza">
+<div class="category-icon w-20 h-20 bg-surface-container-high squircle flex items-center justify-center p-3 mb-2 transition-transform group-hover:scale-105 border border-outline-variant/10">
+<img alt="Pizza" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNlmkS1xbM7sNy8lT8_roEC437ltcVK5lvBGC_lF54G-NbxLB51kZQ-zj9q0Pgp3ipTgHfrwOgjtAgeW_rp5As_CF5LkX_-UqmYYPa5nv9aSudli8UCkzx6BsU2xKJ8Xw4uRuHBKqg_IT1fyMgbeLW4T9m_vhtsVxcmCGtn5vU3bv2faZiP-pJhtFxz6ddJ3WIkKSD6-dO5ca74EpUzL15bNylY8iENe37h4g6DZVveeCMorh56D29xeOfcmNXzLWoSu6dqfHZbVo"/>
+</div>
+<span class="category-label font-label-md text-label-md text-secondary">Pizza</span>
+</div>
+
+
+<!-- Category: Salad -->
+<div class="flex flex-col items-center flex-shrink-0 cursor-pointer group transition-all active:scale-95" data-category="Salad">
+<div class="category-icon w-20 h-20 bg-surface-container-high squircle flex items-center justify-center p-3 mb-2 transition-transform group-hover:scale-105 border border-outline-variant/10">
+<img alt="Salad" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa5O03d8hSlqsYx3SBaC7CVwjL0Dnt6_rJjGW70DDc3wIU7zo9Bc4E5d8JzOX5roEri3-17K3wIux0EoQsuOVffLIF2s9XCvaUZM1FLSnsXsIw9vM9_O8D_wxxogBBl7TM3oBrfZdo5_LwudT0F3LUhGeASNoHxwzX3VQt-tiVsyZCh8bKPY4CL17dnV3ejD8rRPSt2n161-QMvZhYdNdotp9PLSW14U0nyk4kiHcby1jfchd1NOsVcGPYzH-YZkTP5rOqwrsMDWs"/>
+</div>
+<span class="category-label font-label-md text-label-md text-secondary">Salad</span>
+</div>
+
+
+<!-- Beverages -->
+<div class="flex flex-col items-center flex-shrink-0 cursor-pointer group transition-all active:scale-95" data-category="Beverage">
+<div class="category-icon w-20 h-20 bg-surface-container-high squircle flex items-center justify-center p-3 mb-2 transition-transform group-hover:scale-105 border border-outline-variant/10">
+<img alt="Salad" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCa5O03d8hSlqsYx3SBaC7CVwjL0Dnt6_rJjGW70DDc3wIU7zo9Bc4E5d8JzOX5roEri3-17K3wIux0EoQsuOVffLIF2s9XCvaUZM1FLSnsXsIw9vM9_O8D_wxxogBBl7TM3oBrfZdo5_LwudT0F3LUhGeASNoHxwzX3VQt-tiVsyZCh8bKPY4CL17dnV3ejD8rRPSt2n161-QMvZhYdNdotp9PLSW14U0nyk4kiHcby1jfchd1NOsVcGPYzH-YZkTP5rOqwrsMDWs"/>
+</div>
+<span class="category-label font-label-md text-label-md text-secondary">Beverage</span>
+</div>
+
+
+<!-- Category: Ice Cream -->
+<div class="flex flex-col items-center flex-shrink-0 cursor-pointer group transition-all active:scale-95" data-category="Ice Cream">
+<div class="category-icon w-20 h-20 bg-surface-container-high squircle flex items-center justify-center p-3 mb-2 transition-transform group-hover:scale-105 border border-outline-variant/10">
+<img alt="Ice Cream" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsPvSDmX5DTJNUX5p4GSH3yGf_9HGBnj3MGX9LXNRnV91F9FWQGjcqKBKzn2mH4SnOKVskd55h_SQ79MU4C2wW3WUOS38LxrAVqA5Q4DqlMiKFlQnY3-AeewnyYBbUiwbaA9r9ah5z1LjPrlLEdPdZjbfKyI2pd60rGXy1WINDUIqsP1xt8O-vS6DYjuW_hOqKzhiqUWfBVEHBQlu4a1_amWxbRJ_GlOiW_aqflJNeKWegxbZh5TgwaaLV9Et3Jyn4DOe2x_qu4QY"/>
+</div>
+<span class="category-label font-label-md text-label-md text-secondary">Ice Cream</span>
+</div>
+</div>
+</section>
+
+
+
+<!-- Product Menu Section -->
+<section class="py-md">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface" id="section-title">Popular Burgers</h3>
+</div>
+<div class="grid grid-cols-1 gap-gutter" id="product-grid">
+<!-- Product cards will be injected by JS -->
+</div>
+</section>
+
+
+<!-- Go To Menu Button -->
+<section class="py-xl mt-lg">
+<button class="w-full bg-surface-container text-primary border border-primary/20 py-4 rounded-xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform" onclick="scrollToMenu()">
+<span class="material-symbols-outlined">restaurant_menu</span>
+                Go to Menu
+            </button>
+</section>
+</main>
+
+
+
+
+
+<div class="fixed left-margin-mobile right-margin-mobile bg-primary text-on-primary px-4 py-1 rounded-xl flex justify-between items-center shadow-lg z-50 hidden transition-all duration-300 transform translate-y-0 cursor-pointer bottom-20" id="view-order-bar">
+    
+    <div class="flex flex-col leading-tight">
+        <span class="text-xs text-on-primary/90" id="cart-count-text">0 Items</span>
+        <span class="text-sm font-semibold" id="cart-total-text">$0.00</span>
+    </div>
+
+    <div class="bg-white/10 backdrop-blur-sm text-on-primary px-4 py-1 rounded-lg font-medium border border-white/20 active:scale-95 transition-transform flex items-center gap-1">
+        View Order
+        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+    </div>
+
+</div>
+
+
+
+Footer Nav
+<nav class="fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md border-t border-outline-variant/10 px-margin-mobile py-3 flex justify-center items-center z-50">
+
+
+<div class="flex flex-col items-center text-secondary relative" onclick="showModal()">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-label-sm">Cart</span>
+<span class="absolute -top-1 -right-1 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center hidden" id="nav-cart-badge">0</span>
+</div>
+
+</nav>
+<!-- Order Modal Overlay -->
+<div class="fixed inset-0 bg-black/70 z-[60] hidden flex items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity duration-300 backdrop-blur-sm" id="order-modal-overlay">
+<div class="bg-surface-container w-full max-w-md sm:rounded-2xl rounded-t-3xl h-[85vh] sm:h-auto sm:max-h-[80vh] flex flex-col overflow-hidden shadow-2xl transform translate-y-full transition-transform duration-300 border border-outline-variant/10" id="order-modal-content">
+<div class="p-lg border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-high sticky top-0">
+<h3 class="font-headline-lg-mobile text-on-surface">Your Order</h3>
+<button class="material-symbols-outlined p-2 hover:bg-surface-variant rounded-full text-secondary" onclick="hideModal()">close</button>
+</div>
+<div class="flex-1 overflow-y-auto p-lg space-y-md bg-surface" id="order-items-list">
+<!-- Items injected here -->
+</div>
+<div class="p-lg bg-surface-container-low border-t border-outline-variant/10 space-y-lg">
+<div class="flex justify-between items-center">
+<span class="text-body-lg text-secondary">Total Amount</span>
+<span class="text-headline-lg text-primary" id="modal-total-price">$0.00</span>
+</div>
+
+
+<button class="w-full bg-primary py-2 rounded-lg text-on-primary font-semibold text-sm shadow-md shadow-primary/20 active:scale-95 transition-transform">
+    Proceed to Checkout
+</button>
+
+
+
+</div>
+</div>
+</div>
+<!-- Profile Zoom Modal -->
+<div class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-2xl flex items-center justify-center p-6 opacity-0 transition-opacity duration-300" id="profile-zoom-modal">
+<button class="absolute top-6 right-6 text-on-surface/70 hover:text-on-surface bg-surface-variant/20 p-2 rounded-full transition-colors z-[110]" onclick="closeProfileZoom()">
+<span class="material-symbols-outlined text-[32px]">close</span>
+</button>
+<div class="w-full max-w-lg aspect-square rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/20 transform scale-90 transition-transform duration-300" id="profile-zoom-content">
+<img alt="User profile zoomed" class="w-full h-full object-cover" src="logo1.jpeg"/>
+</div>
+</div>
+<script>
+        const categories = document.querySelectorAll('[data-category]');
+        const sectionTitle = document.getElementById('section-title');
+        const productGrid = document.getElementById('product-grid');
+        const orderBar = document.getElementById('view-order-bar');
+        const countText = document.getElementById('cart-count-text');
+        const totalText = document.getElementById('cart-total-text');
+        const navBadge = document.getElementById('nav-cart-badge');
+        const orderModal = document.getElementById('order-modal-overlay');
+        const orderModalContent = document.getElementById('order-modal-content');
+        const orderItemsList = document.getElementById('order-items-list');
+        const modalTotalPrice = document.getElementById('modal-total-price');
+        const profileZoomModal = document.getElementById('profile-zoom-modal');
+        const profileZoomContent = document.getElementById('profile-zoom-content');
+
+        const mockData = {
+            'Burger': [
+                { id: 'b1', name: 'Corn Burger', price: 14.99, desc: 'Premium Corn • 15-25 mins', rating: '4.8 (2k+)', img: 'Corn Burger.jpeg' },
+                { id: 'b2', name: 'Cryspy Burger', price: 11.99, desc: 'Gralic Chips • 10-20 mins', rating: '4.5 (1.2k)', img: 'Cryspy Burger.jpeg' },
+                { id: 'b3', name: 'Cutlet Burger', price: 12.50, desc: 'Veg Cutlet • 12-18 mins', rating: '4.7 (850)', img: 'Cutlet Burger.jpeg' },
+                { id: 'b4', name: 'Paneer Tikka Burger', price: 12.50, desc: 'Fresh Paneer • 12-18 mins', rating: '4.7 (850)', img: 'Paneer Tikka Burger.jpeg' }
+            ],
+
+
+            'Pizza': [
+                { id: 'p1', name: 'Margherita', price: 16.99, desc: 'fresh mozzarella,tangy tomato sauce • 20-30 mins', rating: '4.9 (3k+)', img: 'Margherita.jpeg' },
+                { id: 'p2', name: 'Cheese Burst', price: 13.99, desc: 'Fresh Cheese • 15-25 mins', rating: '4.6 (1.5k)', img: 'Cheese Burst.jpeg' },
+                { id: 'p3', name: 'Corn Pizza', price: 13.99, desc: 'Fresh Cheese • 15-25 mins', rating: '4.6 (1.5k)', img: 'Corn Pizza.jpeg' },
+                { id: 'p4', name: 'Farmhouse Pizza', price: 13.99, desc: 'onions,mushrooms,tomatoes,capsicum • 15-25 mins', rating: '4.6 (1.5k)', img: 'Farmhouse Pizza.jpeg' },
+                { id: 'p5', name: 'Tandoori Pizza', price: 13.99, desc: 'onion rings,green chillies • 15-25 mins', rating: '4.6 (1.5k)', img: 'Tandoori Pizza.jpeg' },
+                { id: 'p6', name: 'Paneer Tikka Pizza', price: 13.99, desc: 'paneer cubes • 15-25 mins', rating: '4.6 (1.5k)', img: 'Paneer Tikka Pizza.jpeg' },
+                { id: 'p7', name: 'Pepperoni Pizza', price: 13.99, desc: 'paper-thin pepperon • 15-25 mins', rating: '4.6 (1.5k)', img: 'Pepperoni Pizza.jpeg' }
+            ],
+
+
+            'Salad': [
+                { id: 's1', name: 'Fruit & Regional Salads', price: 12.99, desc: 'Fresh Fruits • 10-15 mins', rating: '4.7 (900)', img: 'Fruit Salad.jpeg' },
+                { id: 's2', name: 'Raw Vegetable', price: 12.99, desc: 'Kachumber,tomato,onion,coriander with lemon juice • 10-15 mins', rating: '4.7 (900)', img: 'Raw Vegetable.jpeg' },
+                { id: 's3', name: 'Sprout,Lentil,Bean Salads', price: 12.99, desc: 'Moong,beans,lemon • 10-15 mins', rating: '4.7 (900)', img: 'Sprout, Lentil, & Bean Salads.jpeg' },
+                { id: 's4', name: 'Yogurt-Based Salads', price: 12.99, desc: 'Yogurt-Based Salads • 10-15 mins', rating: '4.7 (900)', img: 'Yogurt-Based Salads.jpeg' }
+              
+            ],
+
+
+            'Ice Cream': [
+                { id: 'ic1', name: 'Vanilla Cone', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: 'Vanilla Cone.jpeg' },
+                { id: 'ic2', name: 'Double Delight Sundae', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: ''}, 
+                { id: 'ic3', name: 'Double Delight Sundae', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: ''},
+                { id: 'ic4', name: 'Double Delight Sundae', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: ''},
+                { id: 'ic5', name: 'Double Delight Sundae', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: ''}, 
+                { id: 'ic6', name: 'Double Delight Sundae', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: ''}, 
+            ],
+
+            'Beverage': [
+                { id: 'ic1', name: 'Thums Up', price: 6.50, desc: 'cheeld Thums Up • 5-10 mins', rating: '4.9 (1.1k)', img: 'Thums Up.jpeg' },
+                { id: 'ic2', name: 'Maaza', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: 'Maaza.jpeg'}, 
+                { id: 'ic3', name: 'Frooti', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: 'Frooti.jpeg'},
+                { id: 'ic4', name: 'Appy Fizz', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: 'Appy Fizz.jpeg'},
+                { id: 'ic5', name: 'Limca', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: 'Limca.jpeg'}, 
+                { id: 'ic6', name: 'Double Delight Sundae', price: 6.50, desc: 'Vanilla & Chocolate • 5-10 mins', rating: '4.9 (1.1k)', img: ''}, 
+            ]
+        };
+
+        let cart = {};
+
+        window.openProfileZoom = function() {
+            profileZoomModal.classList.remove('hidden');
+            profileZoomModal.classList.add('flex');
+            setTimeout(() => {
+                profileZoomModal.classList.add('opacity-100');
+                profileZoomContent.classList.remove('scale-90');
+                profileZoomContent.classList.add('scale-100');
+            }, 10);
+        };
+
+        window.closeProfileZoom = function() {
+            profileZoomModal.classList.remove('opacity-100');
+            profileZoomContent.classList.remove('scale-100');
+            profileZoomContent.classList.add('scale-90');
+            setTimeout(() => {
+                profileZoomModal.classList.add('hidden');
+                profileZoomModal.classList.remove('flex');
+            }, 300);
+        };
+
+        window.scrollToMenu = function() {
+            document.getElementById('category-section').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        function updateCartUI() {
+            let totalCount = 0;
+            let totalPrice = 0;
+            
+            Object.values(cart).forEach(item => {
+                totalCount += item.qty;
+                totalPrice += item.qty * item.price;
+            });
+
+            if (totalCount > 0) {
+                orderBar.classList.remove('hidden');
+                countText.textContent = `${totalCount} Item${totalCount > 1 ? 's' : ''}`;
+                totalText.textContent = `$${totalPrice.toFixed(2)}`;
+                navBadge.textContent = totalCount;
+                navBadge.classList.remove('hidden');
+            } else {
+                orderBar.classList.add('hidden');
+                navBadge.classList.add('hidden');
+                hideModal();
+            }
+        }
+
+        function renderProductList(category) {
+            sectionTitle.textContent = `Popular ${category}s`;
+            const items = mockData[category] || [];
+            
+            productGrid.innerHTML = items.map(item => {
+                const currentQty = cart[item.id]?.qty || 0;
+                return `
+                    <div class="bg-surface-container rounded-[1.5rem] overflow-hidden border border-outline-variant/10 group active:scale-[1.01] transition-transform duration-200" data-id="${item.id}">
+                        <div class="h-48 w-full relative">
+                            <img class="w-full h-full object-cover opacity-90" alt="${item.name}" src="${item.img}"/>
+                        </div>
+                        <div class="p-md">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-headline-md text-headline-md text-on-surface">${item.name}</h4>
+                                    <p class="text-body-sm text-secondary">${item.desc}</p>
+                                </div>
+                                <span class="text-primary font-bold text-headline-md">$${item.price.toFixed(2)}</span>
+                            </div>
+                            <div class="cart-control-container">
+                                ${currentQty > 0 ? renderQtySelector(item.id, currentQty) : `<button onclick="addToCart('${item.id}', '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${item.img}')" class="w-full bg-primary text-on-primary py-3 rounded-xl font-label-md active:scale-95 transition-all shadow-lg shadow-primary/20">Add to Cart</button>`}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderQtySelector(id, qty) {
+            return `
+                <div class="flex items-center justify-between w-full bg-primary text-on-primary rounded-xl overflow-hidden h-[48px] shadow-lg shadow-primary/30">
+                    <button onclick="updateQty('${id}', -1)" class="p-3 hover:bg-black/20 transition-colors flex items-center justify-center flex-1">
+                        <span class="material-symbols-outlined">remove</span>
+                    </button>
+                    <span class="font-bold flex-1 text-center text-on-primary">${qty}</span>
+                    <button onclick="updateQty('${id}', 1)" class="p-3 hover:bg-black/20 transition-colors flex items-center justify-center flex-1">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                </div>
+            `;
+        }
+
+        window.addToCart = function(id, name, price, img) {
+            cart[id] = { id, name, price, img, qty: 1 };
+            updateCartUI();
+            refreshProductCard(id);
+        };
+
+        window.updateQty = function(id, delta) {
+            if (!cart[id]) return;
+            cart[id].qty += delta;
+            if (cart[id].qty <= 0) {
+                delete cart[id];
+            }
+            updateCartUI();
+            refreshProductCard(id);
+            if (orderModal.classList.contains('flex')) {
+                renderModalItems();
+            }
+        };
+
+        function refreshProductCard(id) {
+            const card = document.querySelector(`[data-id="${id}"]`);
+            if (!card) return;
+            const container = card.querySelector('.cart-control-container');
+            const item = cart[id];
+            if (item) {
+                container.innerHTML = renderQtySelector(id, item.qty);
+            } else {
+                let product = null;
+                for (let cat in mockData) {
+                    product = mockData[cat].find(p => p.id === id);
+                    if (product) break;
+                }
+                container.innerHTML = `<button onclick="addToCart('${id}', '${product.name.replace(/'/g, "\\'")}', ${product.price}, '${product.img}')" class="w-full bg-primary text-on-primary py-3 rounded-xl font-label-md active:scale-95 transition-all shadow-lg shadow-primary/20">Add to Cart</button>`;
+            }
+        }
+
+        function renderModalItems() {
+            const items = Object.values(cart);
+            if (items.length === 0) {
+                hideModal();
+                return;
+            }
+
+            let totalPrice = 0;
+            orderItemsList.innerHTML = items.map(item => {
+                const subtotal = item.qty * item.price;
+                totalPrice += subtotal;
+                return `
+                    <div class="flex gap-md items-center py-sm border-b border-outline-variant/10 last:border-0">
+                        <img src="${item.img}" class="w-16 h-16 rounded-xl object-cover border border-outline-variant/10" alt="${item.name}">
+                        <div class="flex-1">
+                            <h4 class="font-label-md text-on-surface">${item.name}</h4>
+                            <p class="text-body-sm text-secondary">$${item.price.toFixed(2)} x ${item.qty}</p>
+                        </div>
+                        <div class="flex items-center bg-surface-container-high rounded-lg border border-outline-variant/10">
+                            <button onclick="updateQty('${item.id}', -1)" class="p-1 text-primary">
+                                <span class="material-symbols-outlined text-[20px]">remove</span>
+                            </button>
+                            <span class="px-2 font-bold text-sm text-on-surface">${item.qty}</span>
+                            <button onclick="updateQty('${item.id}', 1)" class="p-1 text-primary">
+                                <span class="material-symbols-outlined text-[20px]">add</span>
+                            </button>
+                        </div>
+                        <div class="text-right ml-2 min-w-[60px]">
+                            <span class="font-bold text-on-surface">$${subtotal.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            modalTotalPrice.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function showModal() {
+            if (Object.keys(cart).length === 0) return;
+            renderModalItems();
+            orderModal.classList.remove('hidden');
+            orderModal.classList.add('flex');
+            setTimeout(() => {
+                orderModal.classList.remove('opacity-0');
+                orderModalContent.classList.remove('translate-y-full');
+                orderModalContent.classList.add('translate-y-0');
+            }, 10);
+        }
+
+        window.hideModal = function() {
+            orderModalContent.classList.remove('translate-y-0');
+            orderModalContent.classList.add('translate-y-full');
+            setTimeout(() => {
+                orderModal.classList.add('hidden');
+                orderModal.classList.remove('flex');
+            }, 300);
+        }
+
+        function updateGreetingAndClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            const clockElement = document.getElementById('live-clock');
+            if (clockElement) clockElement.textContent = `${String(hours).padStart(2, '0')}:${minutes}:${seconds}`;
+
+            const greetingElement = document.getElementById('greeting-text');
+            if (greetingElement) {
+                let message = '';
+                if (hours < 12) message = 'Good Morning ☀️🌅';
+                else if (hours < 18) message = 'Good Afternoon 🌤️😊';
+                else message = 'Good Evening 🌙✨';
+                greetingElement.textContent = message;
+            }
+        }
+
+        setInterval(updateGreetingAndClock, 1000);
+        updateGreetingAndClock();
+
+        categories.forEach(item => {
+            item.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                categories.forEach(el => {
+                    el.querySelector('.category-icon').classList.remove('bg-primary/20', 'active-glow', 'border-primary/30');
+                    el.querySelector('.category-icon').classList.add('bg-surface-container-high', 'border-outline-variant/10');
+                    el.querySelector('.category-label').classList.remove('text-primary');
+                    el.querySelector('.category-label').classList.add('text-secondary');
+                });
+                this.querySelector('.category-icon').classList.remove('bg-surface-container-high', 'border-outline-variant/10');
+                this.querySelector('.category-icon').classList.add('bg-primary/20', 'active-glow', 'border-primary/30');
+                this.querySelector('.category-label').classList.remove('text-secondary');
+                this.querySelector('.category-label').classList.add('text-primary');
+                renderProductList(category);
+            });
+        });
+
+        orderBar.addEventListener('click', showModal);
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) hideModal();
+        });
+        profileZoomModal.addEventListener('click', (e) => {
+            if (e.target === profileZoomModal) closeProfileZoom();
+        });
+
+        renderProductList('Burger');
+    </script>
+</body></html>
